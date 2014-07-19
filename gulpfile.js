@@ -21,6 +21,8 @@ gulp.task('css', function(){
   gulp.src([
     'app/bower_components/bootstrap/dist/css/bootstrap.min.css'
     ])
+  .pipe(concat('css.min.css'))
+  .pipe(minify())
   .pipe(gulp.dest('app/css'))
 })
 
