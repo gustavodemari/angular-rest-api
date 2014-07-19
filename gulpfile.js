@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var minify = require('gulp-uglify');
+var minifyJS = require('gulp-uglify');
+var minifyHTML = require('gulp-htmlmin');
 
 
 gulp.task('js', function(){
@@ -12,7 +13,7 @@ gulp.task('js', function(){
     'app/bower_components/angular-route/angular-route.min.js'
     ])
   .pipe(concat('libs.min.js'))
-  .pipe(minify())
+  .pipe(minifyJS())
   .pipe(gulp.dest('app/js'))
 })
 
@@ -22,7 +23,6 @@ gulp.task('css', function(){
     'app/bower_components/bootstrap/dist/css/bootstrap.min.css'
     ])
   .pipe(concat('css.min.css'))
-  .pipe(minify())
   .pipe(gulp.dest('app/css'))
 })
 
@@ -41,8 +41,25 @@ gulp.task('app', function(){
     'app/controllers/**'
     ])
   .pipe(concat('app.min.js'))
-  .pipe(minify())
+  .pipe(minifyJS())
   .pipe(gulp.dest('app/js'))
 })
 
-gulp.task('build', ['js', 'css', 'fonts', 'app']);
+gulp.task('html', function(){
+  //Gerar HTML
+  var options = {collapseWhitespace: true, minifyJS: true};
+
+  gulp.src([
+    'app/views/index.html'
+    ])
+  .pipe(minifyHTML(options))
+  .pipe(gulp.dest('app/'))
+
+  gulp.src([
+    'app/views/*.html'
+    ])
+  .pipe(minifyHTML(options))
+  .pipe(gulp.dest('app/views/min'))
+})
+
+gulp.task('build', ['js', 'css', 'fonts', 'html', 'app']);
