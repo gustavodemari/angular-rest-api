@@ -1,0 +1,17 @@
+{
+  "name": "angular-rest-api",
+  "version": "0.0.1",
+  "description": "Angular.JS REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "angular",
+    "angular.js",
+    "rest",
+    "api"
+  ],
+  "author": "Gustavo De Mari Pereira",
+  "license": "MIT"
+}
