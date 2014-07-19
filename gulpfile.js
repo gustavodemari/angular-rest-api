@@ -11,7 +11,7 @@ gulp.task('js', function(){
     'app/bower_components/angular/angular.min.js',
     'app/bower_components/angular-route/angular-route.min.js'
     ])
-  .pipe(concat('libs.js'))
+  .pipe(concat('libs.min.js'))
   .pipe(minify())
   .pipe(gulp.dest('app/js'))
 })
@@ -35,9 +35,10 @@ gulp.task('fonts', function(){
 gulp.task('app', function(){
   //Gerar javascript do app
   gulp.src([
+    'app/app.js',
     'app/controllers/**'
     ])
-  .pipe(concat('app.js'))
+  .pipe(concat('app.min.js'))
   .pipe(minify())
   .pipe(gulp.dest('app/js'))
 })
